@@ -54,3 +54,18 @@ body {
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
 }
+
+table tr td a {
+    padding: 10px;
+}
+table tr td {
+    width: 33%;
+    border:solid thin black;
+    font-size:large;
+}
+table {
+    width:100%;
+}
+div > h3 > span {
+    font-weight:inherit;
+}
