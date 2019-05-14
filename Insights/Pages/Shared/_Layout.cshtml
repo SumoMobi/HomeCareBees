@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"></head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-fixed-top navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index"><img src="~/images/logo.png" alt="Home Care Bees" style="height:35px" /></a>
                 @*<a class="navbar-brand" asp-area="" asp-page="/Index" style="height:35px;background-image:url('~/images/logo.png')"></a>*@
@@ -54,7 +54,7 @@
     </header>
     <div class="container">
         @*<partial name="_CookieConsentPartial" />*@
-        <main role="main" class="pb-3">
+        <main class="pb-3">
             @RenderBody()
         </main>
     </div>
@@ -64,7 +64,7 @@
         <div class="container">
             &copy; 2019 - <span style="font-weight:bold">Home Care Bees</span><br />
             315 W Elliot Rd, Suite 107-186, Tempe AZ 85284<br />
-            email: <a href="mail:welcome@homecarebees.com">welcome@HomeCareBees.com</a>
+            email: <a href="mailto:welcome@homecarebees.com">welcome@HomeCareBees.com</a>
         </div>
     </footer>
 
