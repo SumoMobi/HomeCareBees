@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="@ViewData["HomeMetaData"]" />
     <title>@ViewData["Title"]</title>
-
+    @*<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>*@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     </environment>
@@ -21,7 +21,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-fixed-top navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar fixed-top navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index"><img src="~/images/logo.png" alt="Home Care Bees" style="height:35px" /></a>
                 @*<a class="navbar-brand" asp-area="" asp-page="/Index" style="height:35px;background-image:url('~/images/logo.png')"></a>*@
@@ -46,9 +46,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Careers">Careers &nbsp;&nbsp;|</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
+                        @*<li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            </li>*@
                     </ul>
                 </div>
             </div>
@@ -67,6 +67,8 @@
             &copy; 2019 - <span style="font-weight:bold">Home Care Bees</span><br />
             315 W Elliot Rd, Suite 107-186, Tempe AZ 85284<br />
             email: <a href="mailto:welcome@homecarebees.com">welcome@HomeCareBees.com</a>
+            <br />
+            <br />
         </div>
     </footer>
 
