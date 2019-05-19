@@ -69,3 +69,8 @@ table {
 div > h3 > span {
     font-weight:inherit;
 }
+
+._hcbBookmark {
+    position:relative;
+    top:-60px;
+}

@@ -14,6 +14,7 @@ namespace Insights
 {
     public class Startup
     {
+        public static string WebRootPath { get; private set; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -54,6 +55,8 @@ namespace Insights
             app.UseCookiePolicy();
 
             app.UseMvc();
+
+            WebRootPath = env.WebRootPath;
         }
     }
 }
