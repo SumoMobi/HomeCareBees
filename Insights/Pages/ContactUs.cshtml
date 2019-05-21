@@ -1,11 +1,64 @@
 ﻿@page
 @model Insights.Pages.ContactUsModel
 @{
-    ViewData["Title"] = "Home Care Bees - Contact Us";
+    ViewData["Title"] = "Contact Home Care Bees Today";
     ViewData["HomeMetaData"] = "Contact Home Care Bees";
 }
 
-<div class="text-left">
-    <h1 class="display-4" style="text-align:center">Home Care Bees - Contact Us</h1>
-    <br />
-</div>
+    <div class="text-left">
+        <h1 class="display-4" style="text-align:center">Home Care Bees - Contact Us</h1>
+        <br />
+        <h2>Contact us Today</h2>
+        <p>We usually respond to Website inquiries the same day. &nbsp;Please submit the information requested below.</p>
+        <form method="post">
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter first name" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter last name" required>
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" aria-describedby="phoneNumberHelp" placeholder="Enter phone number" required>
+                <small id="phoneNumberHelp" class="form-text text-muted">We'll never share your phone number with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="callTimes">Best time to call (select all that applies):</label>
+                <select multiple class="form-control" id="callTimes" name="callTimes" required>
+                    <option>Mornings</option>
+                    <option>Day time</option>
+                    <option>Evenings</option>
+                    <option>Weekends</option>
+                </select>
+            </div>
+            @*<div class="form-group">
+                <label>Best Time to Call (check all that applies):</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="callTimeMornings" required>
+                    <label class="form-check-label" for="callTimeMornings">
+                        Mornings
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="callTimeDayTime" required checked>
+                    <label class="form-check-label" for="callTimeDayTime">
+                        Day time
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="callTimeEvenings" required>
+                    <label class="form-check-label" for="callTimeEvenings">
+                        Evenings
+                    </label>
+                </div>
+            </div>*@
+            <div class="form-group">
+                <label for="emailAddress">Email address:</label>
+                <input type="email" class="form-control" id="emailAddress" name="emailAddress" aria-describedby="emailHelp" placeholder="Enter email" required>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>

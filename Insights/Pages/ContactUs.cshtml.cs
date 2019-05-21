@@ -13,5 +13,9 @@ namespace Insights.Pages
         {
 
         }
+        public void OnPost()
+        {
+
+        }
     }
 }
