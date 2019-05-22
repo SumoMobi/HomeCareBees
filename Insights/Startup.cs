@@ -14,7 +14,6 @@ namespace Insights
 {
     public class Startup
     {
-        public static string WebRootPath { get; private set; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -51,12 +50,21 @@ namespace Insights
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = context =>
+                {
+                    // Cache static file for 1 year
+                    if (!string.IsNullOrEmpty(context.Context.Request.Query["v"]))
+                    {
+                        context.Context.Response.Headers.Add("cache-control", new[] { "public,max-age=31536000" });
+                        context.Context.Response.Headers.Add("Expires", new[] { DateTime.UtcNow.AddYears(1).ToString("R") }); // Format RFC1123
+                    }
+                }
+            });
             app.UseCookiePolicy();
 
             app.UseMvc();
-
-            WebRootPath = env.WebRootPath;
         }
     }
 }

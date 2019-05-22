@@ -72,7 +72,7 @@ div > h3 > span {
 
 ._hcbBookmark {
     position:relative;
-    top:-82px;
+    top:-85px;
 }
 
 ._hcbTopOfContent {
@@ -91,4 +91,7 @@ div > h3 > span {
     padding: 20px;
     width: 100%;
     height: 100%;
+}
+.container .row .col-sm a span {
+    font-size:x-large;
 }
