@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -49,6 +50,10 @@ namespace Hcb.Insights
             }
 
             app.UseHttpsRedirection();
+
+            app.UseRewriter(new RewriteOptions()
+                .AddRedirectToWwwPermanent());
+
             app.UseStaticFiles(new StaticFileOptions
             {
                 OnPrepareResponse = context =>
