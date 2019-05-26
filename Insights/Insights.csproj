@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <UserSecretsId>a0106947-9e8f-4e2b-8341-0767c456b95a</UserSecretsId>
+    <AssemblyName>Hcb.Insights</AssemblyName>
+    <RootNamespace>Hcb.Insights</RootNamespace>
   </PropertyGroup>
 
 
@@ -14,6 +17,9 @@
 
 
   <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\css\site.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
