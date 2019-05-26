@@ -35,7 +35,7 @@ namespace Hcb.Insights
 
             DES.Mode = CipherMode.ECB;
             DES.Key = Encoding.ASCII.GetBytes(GetKey());
-            key.Dispose();
+            key = new SecureString();
 
             DES.Padding = PaddingMode.PKCS7;
             ICryptoTransform DESEncrypt = DES.CreateEncryptor();
@@ -50,7 +50,7 @@ namespace Hcb.Insights
 
             DES.Mode = CipherMode.ECB;
             DES.Key = Encoding.ASCII.GetBytes(GetKey());
-            key.Dispose();
+            key = new SecureString();
 
             DES.Padding = PaddingMode.PKCS7;
             ICryptoTransform DESEncrypt = DES.CreateDecryptor();
