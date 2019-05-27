@@ -32,22 +32,22 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home &nbsp;&nbsp;|</a>
+                            <a class="nav-link @ViewData["indexActive"]" asp-area="" asp-page="/Index">Home &nbsp;&nbsp;|</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Journey">Manage the Aging Journey &nbsp;&nbsp;|</a>
+                            <a class="nav-link @ViewData["journeyActive"]" asp-area="" asp-page="/Journey">Manage the Aging Journey &nbsp;&nbsp;|</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/AboutUs">About Us &nbsp;&nbsp;|</a>
+                            <a class="nav-link @ViewData["aboutUsActive"]" asp-area="" asp-page="/AboutUs">About Us &nbsp;&nbsp;|</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/ContactUs">Contact Us &nbsp;&nbsp;|</a>
+                            <a class="nav-link @ViewData["contactUsActive"]" asp-area="" asp-page="/ContactUs">Contact Us &nbsp;&nbsp;|</a>
                         </li>
                         @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Careers">Careers &nbsp;&nbsp;|</a>
+                            <a class="nav-link text-dark @ViewData["careersActive"]" asp-area="" asp-page="/Careers">Careers &nbsp;&nbsp;|</a>
                         </li>*@
                         @*<li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                                <a class="nav-link text-dark @ViewData["privacyActive"]" asp-area="" asp-page="/Privacy">Privacy</a>
                             </li>*@
                     </ul>
                 </div>

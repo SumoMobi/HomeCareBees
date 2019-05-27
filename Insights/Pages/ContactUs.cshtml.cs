@@ -10,6 +10,7 @@ namespace Hcb.Insights.Pages
         public void OnGet()
         {
             ViewData["thankYouDisplayStyle"] = "none";
+            ViewData["contactUsActive"] = "active";
         }
         public void OnPost()
         {

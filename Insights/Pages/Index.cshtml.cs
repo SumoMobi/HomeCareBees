@@ -11,6 +11,7 @@ namespace Hcb.Insights.Pages
             {
                 return RedirectToPagePermanent("");
             }
+            ViewData["indexActive"] = "active";
             return Page();
         }
     }

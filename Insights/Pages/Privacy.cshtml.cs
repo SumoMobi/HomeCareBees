@@ -6,6 +6,7 @@ namespace Hcb.Insights.Pages
     {
         public void OnGet()
         {
+            ViewData["privacyActive"] = "active";
         }
     }
 }
