@@ -33,6 +33,8 @@ namespace Hcb.Insights
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddResponseCompression();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,10 +52,8 @@ namespace Hcb.Insights
             }
 
             app.UseHttpsRedirection();
-
             app.UseRewriter(new RewriteOptions()
                 .AddRedirectToWwwPermanent());
-
             app.UseStaticFiles(new StaticFileOptions
             {
                 OnPrepareResponse = context =>
@@ -67,7 +67,7 @@ namespace Hcb.Insights
                 }
             });
             app.UseCookiePolicy();
-
+            app.UseResponseCompression();   //Always call before UseMvc
             app.UseMvc();
         }
     }
