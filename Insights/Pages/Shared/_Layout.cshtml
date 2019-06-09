@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="@ViewData["HomeMetaData"]" />
+    @RenderSection("Meta", required: false)
     <title>@ViewData["Title"]</title>
     @*<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>*@
     <environment include="Development">
@@ -66,7 +67,8 @@
         <div class="container">
             &copy; 2019 - <span style="font-weight:bold">Home Care Bees</span><br />
             315 W Elliot Rd, Suite 107-186, Tempe AZ 85284<br />
-            email: <a href="mailto:welcome@homecarebees.com">welcome@HomeCareBees.com</a>
+            email: <a href="mailto:welcome@homecarebees.com">welcome@HomeCareBees.com</a><br />
+            <img src="~/images/RapidSSL_SEAL-90x50.gif" alt="Site secured by Rapid SSL" />
             <br />
             <br />
         </div>
