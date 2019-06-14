@@ -32,11 +32,20 @@ namespace Hcb.Insights
             });
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
             services.AddResponseCompression();
 
-            services.AddHsts(options => options.IncludeSubDomains = true);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddHttpsRedirection(options => {
+                options.HttpsPort = 443;
+                options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
+            });
+
+            services.AddHsts(options =>
+            {
+                options.IncludeSubDomains = true;
+//                options.MaxAge = new TimeSpan(0, 3, 0);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,9 +62,9 @@ namespace Hcb.Insights
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseRewriter(new RewriteOptions()
                 .AddRedirectToWwwPermanent());
+            app.UseHttpsRedirection();
             app.UseStaticFiles(new StaticFileOptions
             {
                 OnPrepareResponse = context =>
