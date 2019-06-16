@@ -4,47 +4,73 @@
     ViewData["Title"] = "Contact Home Care Bees Today";
     ViewData["HomeMetaData"] = "Contact Home Care Bees";
 }
+@section Styles {
+    <style>
+        .form-row > div:first-child {
+            padding-left: 15px;
+        }
+    </style>
+}
 
-    <div class="text-left">
-        <h1 class="display-4" style="text-align:center">Home Care Bees - Contact Us</h1>
-        <br />
-        <h2>Contact us Today</h2>
-        <div class="card" style="display:@(ViewData["thankYouDisplayStyle"]);border:1px blue solid;margin-top:20px;margin-bottom:20px;text-align:center">
-            <p class="card-text" style="font-size:x-large;padding-top:10px;padding-bottom:10px;">Thank you for your inquiry. &nbsp;We will get back to you within 24 hours.</p>
-        </div>
-        <p>We usually respond to Website inquiries the same day. &nbsp;Please submit the information requested below.</p>
-        <form method="post">
-            <div class="form-group">
-                <label for="firstName">First Name:</label>
-                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter first name" required>
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last Name:</label>
-                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter last name" required>
-            </div>
-            <div class="form-group">
-                <label for="phoneNumber">Phone Number:</label>
-                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" aria-describedby="phoneNumberHelp" placeholder="Enter phone number" required>
-                <small id="phoneNumberHelp" class="form-text text-muted">We'll never share your phone number with anyone else.</small>
-            </div>
-            <div class="form-group">
-                <label for="callTimes">Best time to call (select all that applies):</label>
-                <select multiple class="form-control" id="callTimes" name="callTimes" required>
-                    <option value="mornings">Mornings</option>
-                    <option value="dayTime">Day time</option>
-                    <option value="evenings">Evenings</option>
-                    <option value="weekends">Weekends</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="emailAddress">Email address:</label>
-                <input type="email" class="form-control" id="emailAddress" name="emailAddress" aria-describedby="emailHelp" placeholder="Enter email" required>
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div class="form-group">
-                <label for="inquiry">Inquiry Details:</label>
-                <textarea rows="10" class="form-control" id="inquiry" name="inquiry" placeholder="Enter inquiry details" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+<div class="text-left">
+    <h1 class="display-4" style="text-align:center">Home Care Bees - Contact Us</h1>
+    <br />
+    <h2>Contact us Today</h2>
+    <div class="card" style="display:@(ViewData["thankYouDisplayStyle"]);border:1px blue solid;margin-top:20px;margin-bottom:20px;text-align:center">
+        <p class="card-text" style="font-size:x-large;padding-top:10px;padding-bottom:10px;">Thank you for your inquiry. &nbsp;We will get back to you within 24 hours.</p>
     </div>
+    <p>We usually respond to Website inquiries the same day. &nbsp;Please submit the information requested below.</p>
+    <form method="post">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter first name" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter last name" required>
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" aria-describedby="phoneNumberHelp" placeholder="Enter phone number" required>
+            <small id="phoneNumberHelp" class="form-text text-muted">We'll never share your phone number with anyone else.</small>
+        </div>
+        <label for="callTimes">Best time to call (please select all that applies):</label>
+        <div class="border" style="padding-top:15px">
+            @foreach (var b in Model.BestTimesToCall)
+            {
+                <div class="form-row">
+                    <div class="col">
+                        @b.DayLabel
+                    </div>
+                    @foreach (var t in b.CheckboxIdsAndLabels)
+                    {
+                    <div class="col form-group">
+                        <input type="checkbox" id="@t.Id" name="@t.Id" class="form-check-input" />
+                        <label for="@t.Id" class="form-check-label">@t.Label</label>
+                    </div>
+                    }
+                </div>
+            }
+        </div>
+        <div class="form-group" style="margin-top:-20px">
+            <input type="text" class="form-control" id="dummy" name="dummy" required style="height:0px;visibility:hidden">
+            <div class="invalid-feedback">
+                Please choose best times to call.
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="emailAddress">Email address:</label>
+            <input type="email" class="form-control" id="emailAddress" name="emailAddress" aria-describedby="emailHelp" placeholder="Enter email" required>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="inquiry">Inquiry Details:</label>
+            <textarea rows="10" class="form-control" id="inquiry" name="inquiry" placeholder="Enter inquiry details" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="_hcb.contactUs.submitClicked(event);">Submit</button>
+    </form>
+    @section  Scripts {
+        <script src="~/js/contactUs.js" asp-append-version="true"></script>
+    }
+</div>

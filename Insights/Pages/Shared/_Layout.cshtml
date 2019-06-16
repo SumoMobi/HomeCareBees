@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="@ViewData["HomeMetaData"]" />
     @RenderSection("Meta", required: false)
+    <meta name="msvalidate.01" content="C5CE176423A1D237A874BB2502E79C07" />
     <title>@ViewData["Title"]</title>
     @*<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>*@
     <environment include="Development">
@@ -19,6 +20,7 @@
     </environment>
     <link rel="stylesheet" asp-append-version="true" href="css/site.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    @RenderSection("Styles", required:false)
 </head>
 <body>
     <header>
