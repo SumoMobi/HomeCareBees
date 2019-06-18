@@ -4,6 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="@ViewData["MetaDescription"]" />
+    <meta property="og:title" content="@ViewData["Title"]" />
+    <meta property="og:site_name" content="Home Care Bees" />
+    <meta property="og:description" content="Modern home care starts with us, step-by-step, hand-in-hand navigating elderly care. Accomodating older adult's preference to stay in their own homes." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://www.homecarebees.com/images/logo.png" />
+    <meta property="og:url" content="https://www.homecarebees.com" />
     @RenderSection("Meta", required: false)
     <meta name="msvalidate.01" content="C5CE176423A1D237A874BB2502E79C07" />
     <title>@ViewData["Title"]</title>
@@ -21,7 +27,7 @@
     <link rel="stylesheet" asp-append-version="true" href="css/site.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    @RenderSection("Styles", required:false)
+    @RenderSection("Styles", required: false)
 </head>
 <body>
     <header>
