@@ -1,3 +1,4 @@
 ﻿User-agent: *
 Disallow: /Error/*
 Disallow: /Privacy/*
+Sitemap: https://www.homecarebees.com/sitemap.xml
