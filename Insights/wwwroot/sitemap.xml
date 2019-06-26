@@ -6,23 +6,23 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 <url>
-  <loc>http://www.homecarebees.com/</loc>
-  <lastmod>2019-05-26T23:18:27+00:00</lastmod>
+  <loc>https://www.homecarebees.com/</loc>
+  <lastmod>2019-06-25T23:18:27+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>http://www.homecarebees.com/Journey</loc>
-  <lastmod>2019-05-26T23:18:27+00:00</lastmod>
+  <loc>https://www.homecarebees.com/Journey</loc>
+  <lastmod>2019-06-25T23:18:27+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.homecarebees.com/AboutUs</loc>
-  <lastmod>2019-05-26T23:18:27+00:00</lastmod>
+  <loc>https://www.homecarebees.com/AboutUs</loc>
+  <lastmod>2019-06-25T23:18:27+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.homecarebees.com/ContactUs</loc>
-  <lastmod>2019-05-26T23:18:27+00:00</lastmod>
+  <loc>https://www.homecarebees.com/ContactUs</loc>
+  <lastmod>2019-06-25T23:18:27+00:00</lastmod>
   <priority>0.50</priority>
 </url>
 </urlset>
