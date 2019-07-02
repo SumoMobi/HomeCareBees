@@ -41,6 +41,8 @@ namespace Hcb.Insights
                 options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
             });
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddHsts(options =>
             {
                 options.IncludeSubDomains = true;
