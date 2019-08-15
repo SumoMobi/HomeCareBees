@@ -40,6 +40,10 @@
         url += "://";
         url += httpContextAccessor.HttpContext.Request.Host;
         url += httpContextAccessor.HttpContext.Request.Path.ToString();
+        if (url.EndsWith("/"))
+        {
+            url = url.Substring(0, url.Length - 1);
+        }
     }
     <link rel="canonical" href="@url" />
     @RenderSection("Styles", required: false)
@@ -48,7 +52,7 @@
     <header>
         <nav class="navbar fixed-top navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index"><img asp-append-version="true" src="~/images/logo_312x292.png" alt="Home Care Bees" title="Home Care Bees logo" style="height:55px" /></a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index"><img asp-append-version="true" src="~/images/LogoOnWhite.png" alt="Home Care Bees" title="Home Care Bees logo" style="height:55px" /></a>
                 @*<a class="navbar-brand" asp-area="" asp-page="/Index" style="height:35px;background-image:url('~/images/logo.png')"></a>*@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
