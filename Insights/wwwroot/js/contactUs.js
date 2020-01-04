@@ -21,7 +21,14 @@ _hcb.contactUs = {
             dummyInput.addClass("is-invalid");
             evt.preventDefault();
             evt.stopPropagation();
+            return;
         }
+        ga('send', {
+            hitType: 'event',
+            eventCategory: 'ContactRequest',
+            eventAction: 'submit',
+            eventLabel: 'contactRequest'
+        });
     }
 }
 $(document).ready(function () {
