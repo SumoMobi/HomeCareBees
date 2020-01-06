@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Mail;
 using System.Text;
 
 namespace Hcb.Insights.Pages
@@ -24,7 +21,6 @@ namespace Hcb.Insights.Pages
 
         public void OnGet()
         {
-            ViewData["thankYouDisplayStyle"] = "none";
             ViewData["contactUsActive"] = "active";
 
             SetUpBestTimesToCall();
@@ -41,9 +37,7 @@ namespace Hcb.Insights.Pages
                 "inquiries@homecarebees.com",
                 sb.ToString());
 
-            ViewData["thankYouDisplayStyle"] = "";
-
-            SetUpBestTimesToCall();
+            Response.Redirect("Confirm");
         }
         private void SetUpBestTimesToCall()
         {

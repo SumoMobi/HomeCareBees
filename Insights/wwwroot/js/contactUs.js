@@ -23,12 +23,16 @@ _hcb.contactUs = {
             evt.stopPropagation();
             return;
         }
-        ga('send', {
-            hitType: 'event',
-            eventCategory: 'ContactRequest',
-            eventAction: 'submit',
-            eventLabel: 'contactRequest'
-        });
+        try {
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'ContactRequest',
+                eventAction: 'submit',
+                eventLabel: 'contactRequest',
+                eventValue: 1
+            });
+        }
+        catch {}
     }
 }
 $(document).ready(function () {
