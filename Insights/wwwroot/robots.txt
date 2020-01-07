@@ -1,4 +1,5 @@
 ﻿User-agent: *
 Disallow: /Error/*
 Disallow: /Privacy/*
+Disallow: /Confirm/*
 Sitemap: https://www.homecarebees.com/sitemap.xml
