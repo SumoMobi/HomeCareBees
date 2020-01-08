@@ -30,6 +30,10 @@ namespace Hcb.Insights.Pages
             StringBuilder sb = new StringBuilder();
             foreach(string key in Request.Form.Keys)
             {
+                if (key == "dummy" || key == "__RequestVerificationToken")
+                {
+                    continue;
+                }
                 sb.Append($"{key}[{Request.Form[key]}]\n");
             }
             Email.Send(
