@@ -10,10 +10,11 @@ namespace Hcb.Insights
         static SecureString key = new SecureString();
         public static string Encrypt(string data)
         {
-            TripleDESCryptoServiceProvider DES = new TripleDESCryptoServiceProvider();
-
-            DES.Mode = CipherMode.ECB;
-            DES.Key = Encoding.ASCII.GetBytes(GetKey());
+            TripleDESCryptoServiceProvider DES = new TripleDESCryptoServiceProvider
+            {
+                Mode = CipherMode.ECB,
+                Key = Encoding.ASCII.GetBytes(GetKey())
+            };
             key = new SecureString();
 
             DES.Padding = PaddingMode.PKCS7;
@@ -25,10 +26,11 @@ namespace Hcb.Insights
 
         public static string Decrypt(string data)
         {
-            TripleDESCryptoServiceProvider DES = new TripleDESCryptoServiceProvider();
-
-            DES.Mode = CipherMode.ECB;
-            DES.Key = Encoding.ASCII.GetBytes(GetKey());
+            TripleDESCryptoServiceProvider DES = new TripleDESCryptoServiceProvider
+            {
+                Mode = CipherMode.ECB,
+                Key = Encoding.ASCII.GetBytes(GetKey())
+            };
             key = new SecureString();
 
             DES.Padding = PaddingMode.PKCS7;

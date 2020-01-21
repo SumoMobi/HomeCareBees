@@ -69,12 +69,6 @@
                 </div>
             }
         </div>
-        <div class="form-group" style="margin-top:-20px">
-            <input type="text" class="form-control" id="dummy" name="dummy" required style="height:0px;visibility:hidden">
-            <div class="invalid-feedback">
-                Please choose best times to call.
-            </div>
-        </div>
         <div class="form-group">
             <label for="emailAddress">Email address:</label>
             <input type="email" class="form-control" id="emailAddress" name="emailAddress" aria-describedby="emailHelp" placeholder="Enter email" required>
@@ -84,9 +78,13 @@
             <label for="inquiry">Inquiry Details:</label>
             <textarea rows="10" class="form-control" id="inquiry" name="inquiry" placeholder="Enter inquiry details" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" onclick="_hcb.contactUs.submitClicked(event);">Submit</button>
+        <input type="hidden" id="reCaptchaToken" name="reCaptchaToken">
+        <button type="submit" id="submitButton" style="display:none"></button>
     </form>
-    @section  Scripts {
+    <button type="button" class="btn btn-primary" onclick="_hcb.contactUs.submitClicked(event);">Submit</button>
+    <input type="hidden" id="dummy">
+    @section Scripts {
         <script src="~/js/contactUs.js" asp-append-version="true"></script>
+        <script src="https://www.google.com/recaptcha/api.js?render=6LfHsM0UAAAAAMoFKW3RL7qfBgX8pBW5Z5EY2c2Q"></script>
     }
 </div>

@@ -13,11 +13,11 @@ namespace Hcb.Insights
     {
         public Startup(IConfiguration configuration)
         {
-            _configuration = configuration;
+//            _configuration = configuration;
             Configuration = configuration;
         }
 
-        public IConfiguration _configuration { get; }
+//        public IConfiguration _configuration { get; }
 
         public static IConfiguration Configuration { get; private set; }
 
@@ -34,9 +34,13 @@ namespace Hcb.Insights
 
             services.AddResponseCompression();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddSessionStateTempDataProvider();
+            services.AddSession();
 
-            services.AddHttpsRedirection(options => {
+            services.AddHttpsRedirection(options =>
+            {
                 options.HttpsPort = 443;
                 options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
             });
@@ -46,7 +50,7 @@ namespace Hcb.Insights
             services.AddHsts(options =>
             {
                 options.IncludeSubDomains = true;
-//                options.MaxAge = new TimeSpan(0, 3, 0);
+                //                options.MaxAge = new TimeSpan(0, 3, 0);
             });
         }
 
@@ -65,6 +69,7 @@ namespace Hcb.Insights
             }
 
             app.UseRewriter(new RewriteOptions()
+                .Add(new RedirectAzureWebsitesRule())
                 .AddRedirectToWwwPermanent());
             app.UseHttpsRedirection();
             app.UseStaticFiles(new StaticFileOptions
@@ -81,7 +86,26 @@ namespace Hcb.Insights
             });
             app.UseCookiePolicy();
             app.UseResponseCompression();   //Always call before UseMvc
+            app.UseSession();
             app.UseMvc();
+        }
+    }
+
+    public class RedirectAzureWebsitesRule : IRule
+    {
+        public void ApplyRule(RewriteContext context)
+        {
+            HostString host = context.HttpContext.Request.Host;
+
+            if (host.HasValue && host.Value.ToLower().Contains(".azurewebsites.net"))
+            {
+                //if we are viewing on azure's domain - skip the www redirect
+                context.Result = RuleResult.SkipRemainingRules;
+            }
+            else
+            {
+                context.Result = RuleResult.ContinueRules;
+            }
         }
     }
 }
