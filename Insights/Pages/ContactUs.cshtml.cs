@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
@@ -28,54 +29,12 @@ namespace Hcb.Insights.Pages
         }
         public void OnPost()
         {
-            //Ensure the reCaptcha validation was done and within a few seconds of this post request.  Further that it was for the same token.
-            //First make sure we have the three entries in session.
-            string reCaptchaToken = HttpContext.Session.GetString("reCaptchaToken");
-            if (string.IsNullOrEmpty(reCaptchaToken))
+            if (Validate(Request.Form["reCaptchaToken"]) == false)
             {
                 return;
             }
-            string dateTimeValidated = HttpContext.Session.GetString("reCaptchaTokenTime");
-            if (string.IsNullOrEmpty(dateTimeValidated))
-            {
-                return;
-            }
-            string isTokenValid = HttpContext.Session.GetString("isTokenValid");
-            if (string.IsNullOrEmpty(isTokenValid))
-            {
-                return;
-            }
-
-            //Next make sure the values in the session variables are good.
-            if (bool.TryParse(isTokenValid, out bool b) == false)
-            {
-                return;
-            }
-            if (b == false)
-            {
-                return;
-            }
-
-            if (DateTime.TryParse(dateTimeValidated, out DateTime dt) == false)
-            {
-                return;
-            }
-            if (DateTime.UtcNow < dt)
-            {
-                return;
-            }
-            if ((DateTime.UtcNow - dt).TotalMilliseconds > 3000)
-            {
-                return;
-            }
-
-            if (Request.Form["reCaptchaToken"] != reCaptchaToken)
-            {
-                return;
-            }
-
             StringBuilder sb = new StringBuilder();
-            foreach(string key in Request.Form.Keys)
+            foreach (string key in Request.Form.Keys)
             {
                 if (key == "__RequestVerificationToken" || key == "reCaptchaToken")
                 {
@@ -89,6 +48,65 @@ namespace Hcb.Insights.Pages
                 sb.ToString());
 
             Response.Redirect("Confirm");
+        }
+        /// <summary>
+        /// Due to the complexities with anti forgery and posting form data from MSTEST to a razor page, I added this method to be 
+        /// passed the form data necessary for validation.
+        /// </summary>
+        /// <param name="reCaptchaTokenInForm"></param>
+        internal bool Validate(string reCaptchaTokenInForm)
+        {
+            //Ensure the reCaptcha validation was done and within a few seconds of this post request.  Further that it was for the same token.
+            //Is the reCaptcha token in the form?
+            if (string.IsNullOrWhiteSpace(reCaptchaTokenInForm))
+            {
+                return false;
+            }
+            //Make sure we have the three entries in session.
+            string reCaptchaTokenInSession = HttpContext.Session.GetString("reCaptchaToken");
+            if (string.IsNullOrEmpty(reCaptchaTokenInSession))
+            {
+                return false;
+            }
+            string dateTimeValidated = HttpContext.Session.GetString("reCaptchaTokenTime");
+            if (string.IsNullOrEmpty(dateTimeValidated))
+            {
+                return false;
+            }
+            string isTokenValid = HttpContext.Session.GetString("isTokenValid");
+            if (string.IsNullOrEmpty(isTokenValid))
+            {
+                return false;
+            }
+
+            //Next make sure the values in the session variables are good.
+            if (bool.TryParse(isTokenValid, out bool b) == false)
+            {
+                return false;
+            }
+            if (b == false)
+            {
+                return false;
+            }
+
+            if (DateTime.TryParse(dateTimeValidated, out DateTime dt) == false)
+            {
+                return false;
+            }
+            if (DateTime.UtcNow < dt)
+            {
+                return false;
+            }
+            if ((DateTime.UtcNow - dt).TotalMilliseconds > 3000)
+            {
+                return false;
+            }
+            if (reCaptchaTokenInForm != reCaptchaTokenInSession)
+            {
+                return false;
+            }
+
+            return true;
         }
         private void SetUpBestTimesToCall()
         {

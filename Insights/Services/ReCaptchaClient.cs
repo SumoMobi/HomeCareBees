@@ -28,8 +28,9 @@ namespace Hcb.Insights.Services
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            IConfigurationSection config = Startup.Configuration.GetSection("hcb");
-            string secret = config.GetValue<string>("reCaptchaSecret");
+            //            IConfigurationSection config = Startup.Configuration.GetSection("hcb");
+            //            string secret = config.GetValue<string>("reCaptchaSecret");
+            string secret = Environment.GetEnvironmentVariable("hcb:reCaptchaSecret");
             FormUrlEncodedContent formContent = new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("secret", Crypto.Decrypt(secret)),
