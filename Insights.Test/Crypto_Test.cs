@@ -16,7 +16,7 @@ namespace Hcb.Insights.Test
         public void Encrypt_01()
         {
             string str = "Abc123)(*";
-            string result = Hcb.Insights.Crypto.Encrypt(str);
+            Hcb.Insights.Crypto.Encrypt(str);
         }
         [TestMethod]
         public void EncryptDecrypt_01()

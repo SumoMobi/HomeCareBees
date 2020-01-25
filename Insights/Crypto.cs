@@ -7,7 +7,6 @@ namespace Hcb.Insights
 {
     public partial class Crypto
     {
-        static SecureString key = new SecureString();
         public static string Encrypt(string data)
         {
             TripleDESCryptoServiceProvider DES = new TripleDESCryptoServiceProvider
@@ -15,7 +14,6 @@ namespace Hcb.Insights
                 Mode = CipherMode.ECB,
                 Key = Encoding.ASCII.GetBytes(GetKey())
             };
-            key = new SecureString();
 
             DES.Padding = PaddingMode.PKCS7;
             ICryptoTransform DESEncrypt = DES.CreateEncryptor();
@@ -31,7 +29,6 @@ namespace Hcb.Insights
                 Mode = CipherMode.ECB,
                 Key = Encoding.ASCII.GetBytes(GetKey())
             };
-            key = new SecureString();
 
             DES.Padding = PaddingMode.PKCS7;
             ICryptoTransform DESEncrypt = DES.CreateDecryptor();
