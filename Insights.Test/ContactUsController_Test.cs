@@ -37,6 +37,7 @@ namespace Hcb.Insights.Test
             controller.ControllerContext.HttpContext.Request.Body = new MemoryStream();
             controller.ControllerContext.HttpContext.Request.Body.Write(bytes, 0, bytes.Length);
             controller.ControllerContext.HttpContext.Request.Body.Flush();
+            controller.ControllerContext.HttpContext.Request.Body.Position = 0;
             controller.ControllerContext.HttpContext.Session = new TestSession();
             Environment.SetEnvironmentVariable("_IsTokenValid", "false");
             bool result = controller.Post();    //Validate the token
@@ -65,6 +66,7 @@ namespace Hcb.Insights.Test
             controller.ControllerContext.HttpContext.Request.Body = new MemoryStream();
             controller.ControllerContext.HttpContext.Request.Body.Write(bytes, 0, bytes.Length);
             controller.ControllerContext.HttpContext.Request.Body.Flush();
+            controller.ControllerContext.HttpContext.Request.Body.Position = 0;
             controller.ControllerContext.HttpContext.Session = new TestSession();
             Environment.SetEnvironmentVariable("_IsTokenValid", "true");    //Force token to look like a good one.
             bool result = controller.Post();
@@ -94,14 +96,17 @@ namespace Hcb.Insights.Test
             controller.ControllerContext.HttpContext.Request.Body = new MemoryStream();
             controller.ControllerContext.HttpContext.Request.Body.Write(bytes, 0, bytes.Length);
             controller.ControllerContext.HttpContext.Request.Body.Flush();
+            controller.ControllerContext.HttpContext.Request.Body.Position = 0;
             controller.ControllerContext.HttpContext.Session = new TestSession();
             Environment.SetEnvironmentVariable("_IsTokenValid", "true");    //Force it to look like a valid token
             bool result = controller.Post();
             Assert.AreEqual(true, result);
             //Now make the validation call.
             ModelStateDictionary modelState = new ModelStateDictionary();
-            HttpContext contextForPage = new DefaultHttpContext();
-            contextForPage.Session = controller.HttpContext.Session;
+            HttpContext contextForPage = new DefaultHttpContext
+            {
+                Session = controller.HttpContext.Session
+            };
             ActionContext actionContext = new ActionContext(contextForPage, new RouteData(), new PageActionDescriptor(), modelState);
             PageContext pageContext = new PageContext(actionContext);
 
@@ -126,14 +131,17 @@ namespace Hcb.Insights.Test
             controller.ControllerContext.HttpContext.Request.Body = new MemoryStream();
             controller.ControllerContext.HttpContext.Request.Body.Write(bytes, 0, bytes.Length);
             controller.ControllerContext.HttpContext.Request.Body.Flush();
+            controller.ControllerContext.HttpContext.Request.Body.Position = 0;
             controller.ControllerContext.HttpContext.Session = new TestSession();
             Environment.SetEnvironmentVariable("_IsTokenValid", "true");
             bool result = controller.Post();
             Assert.AreEqual(true, result);
             //Now make the validation call.
             ModelStateDictionary modelState = new ModelStateDictionary();
-            HttpContext contextForPage = new DefaultHttpContext();
-            contextForPage.Session = controller.HttpContext.Session;
+            HttpContext contextForPage = new DefaultHttpContext
+            {
+                Session = controller.HttpContext.Session
+            };
             ActionContext actionContext = new ActionContext(contextForPage, new RouteData(), new PageActionDescriptor(), modelState);
             PageContext pageContext = new PageContext(actionContext);
             Pages.ContactUsModel contactUs = new Pages.ContactUsModel()

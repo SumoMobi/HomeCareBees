@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System;
 
 namespace Hcb.Insights
@@ -24,6 +24,7 @@ namespace Hcb.Insights
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRazorPages();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -31,13 +32,17 @@ namespace Hcb.Insights
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             services.AddResponseCompression();
 
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddSessionStateTempDataProvider();
-            services.AddSession();
+            services.AddSession( options => 
+            { 
+                options.IdleTimeout = TimeSpan.FromMinutes(5);
+                options.Cookie.HttpOnly = true;
+                // Make the session cookie essential
+                options.Cookie.IsEssential = true;
+            });
+            services.AddMemoryCache();
+//            services.AddDistributedMemoryCache();
 
             services.AddHttpsRedirection(options =>
             {
@@ -52,10 +57,15 @@ namespace Hcb.Insights
                 options.IncludeSubDomains = true;
                 //                options.MaxAge = new TimeSpan(0, 3, 0);
             });
+
+            services.Configure<IISServerOptions>(options =>
+            {   //Need this so that we can call synchronous methods such as Stream.ReadLine().
+                options.AllowSynchronousIO = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -85,9 +95,20 @@ namespace Hcb.Insights
                 }
             });
             app.UseCookiePolicy();
+            app.UseSession();   //Must be called after UseCookiePolicy
+//            app.UseMvc();   //Must be called after UseSession.
             app.UseResponseCompression();   //Always call before UseMvc
-            app.UseSession();
-            app.UseMvc();
+            app.UseRouting();
+            app.UseEndpoints(endpoints => 
+            { 
+                endpoints.MapRazorPages();
+                endpoints.MapControllers(); 
+            });
+
+            Environment.SetEnvironmentVariable("_RunningUnderMsTest", "false");
+            string secret = Configuration.GetSection("hcb").GetValue<string>("reCaptchaSecret");
+            Environment.SetEnvironmentVariable("hcb:reCaptchaSecret", secret);
+
         }
     }
 

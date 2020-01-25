@@ -28,21 +28,6 @@ _hcb.contactUs = {
         centerCheckBox.required = false;
         centerCheckBox.setCustomValidity("");
 
-        if (document.location.host.startsWith("localhost")) {   //Skip recaptcha validation under local host
-            $.post(
-                "api/contactus",
-                "myFakeToken")
-                .done(function (data) {
-                    if (data == false) {
-                        return; //Request failed the reCaptcha test.  Leave the user just where they were.  No message.
-                    }
-                    submitBtn.click();  //Submit the form.
-                })
-                .fail(function (data) {
-                    return; //reCaptcha test could not be completed.  Leave user where they were.
-                });
-            submitBtn.click();
-        }
         grecaptcha.ready(function () {
             grecaptcha.execute('6LfHsM0UAAAAAMoFKW3RL7qfBgX8pBW5Z5EY2c2Q', { action: 'contactUs' }).then(function (token) {
                 //Go find out if the request passes the reCaptcha test.

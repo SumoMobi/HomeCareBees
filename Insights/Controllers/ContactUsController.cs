@@ -15,9 +15,16 @@ namespace Hcb.Insights.Controllers
         public bool Post()
         {
             StreamReader reader = new StreamReader(Request.Body);
-            Request.Body.Position = 0;
-            string token = reader.ReadToEnd();
-            bool isTokenValid = ReCaptchaClient.Verify(token, Request.Host.ToString()).Result;
+            string token = reader.ReadLine();
+            bool isTokenValid;
+            if (Request.Host.ToString().StartsWith("localhost"))
+            {   //Running locally.  Loose the port part.
+                isTokenValid = ReCaptchaClient.Verify(token, "localhost").Result;
+            }
+            else
+            {
+                isTokenValid = ReCaptchaClient.Verify(token, Request.Host.ToString()).Result;
+            }
             if (Environment.GetEnvironmentVariable("_RunningUnderMsTest") == "true")
             {   //Override as the unit test wants you to do.
                 if (string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("_IsTokenValid")) == false)
