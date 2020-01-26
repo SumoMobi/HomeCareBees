@@ -25,11 +25,11 @@ namespace Hcb.Insights.Controllers
             {
                 isTokenValid = ReCaptchaClient.Verify(token, Request.Host.ToString()).Result;
             }
-            if (Environment.GetEnvironmentVariable("_RunningUnderMsTest") == "true")
+            if (Environment.GetEnvironmentVariable("hcb:RunningUnderMsTest") == "true")
             {   //Override as the unit test wants you to do.
-                if (string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("_IsTokenValid")) == false)
+                if (string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("hcb:IsTokenValid")) == false)
                 {   //Unit test wants to override the token's validity.
-                    isTokenValid = bool.Parse(Environment.GetEnvironmentVariable("_IsTokenValid"));
+                    isTokenValid = bool.Parse(Environment.GetEnvironmentVariable("hcb:IsTokenValid"));
                 }
             }
             //In order for hackers not to bypass the reCaptcha check, the POST handler will expect to see proof in session that the token validation passed.

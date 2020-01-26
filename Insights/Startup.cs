@@ -105,7 +105,7 @@ namespace Hcb.Insights
                 endpoints.MapControllers(); 
             });
 
-            Environment.SetEnvironmentVariable("_RunningUnderMsTest", "false");
+            Environment.SetEnvironmentVariable("hcb:RunningUnderMsTest", "false");
             string secret = Configuration.GetSection("hcb").GetValue<string>("reCaptchaSecret");
             Environment.SetEnvironmentVariable("hcb:reCaptchaSecret", secret);
 

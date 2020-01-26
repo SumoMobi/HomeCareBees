@@ -21,16 +21,16 @@ namespace Hcb.Insights.Test
         [TestInitialize]
         public void Initialize()
         {
-            Environment.SetEnvironmentVariable("_RunningUnderMsTest", "true");
+            Environment.SetEnvironmentVariable("hcb:RunningUnderMsTest", "true");
             Environment.SetEnvironmentVariable("hcb:reCaptchaSecret", "g3grUoNXNJIy2VqeFczEBLRKIrzVt9M6RRk14qDdLEWV+/y8QEG90afkSvHtBTwA");
 
             HttpContext context = new DefaultHttpContext();
             context.Request.Host = new HostString("localhost");
-            byte[] bytes = Encoding.ASCII.GetBytes(token);
-            context.Request.Body = new MemoryStream();
-            context.Request.Body.Write(bytes, 0, bytes.Length);
-            context.Request.Body.Flush();
-            context.Request.Body.Position = 0;
+            //byte[] bytes = Encoding.ASCII.GetBytes(token);
+            //context.Request.Body = new MemoryStream();
+            //context.Request.Body.Write(bytes, 0, bytes.Length);
+            //context.Request.Body.Flush();
+            //context.Request.Body.Position = 0;
             context.Session = new TestSession();
             ModelStateDictionary modelState = new ModelStateDictionary();
             ActionContext actionContext = new ActionContext(context, new RouteData(), new PageActionDescriptor(), modelState);
@@ -48,44 +48,48 @@ namespace Hcb.Insights.Test
         public void Post_InvalidToken()
         {
 
-            Environment.SetEnvironmentVariable("_IsTokenValid", "false");
-            bool result = reCaptcha.OnPost();    //Validate the token
-            Assert.AreEqual(false, result);
-            
+            Environment.SetEnvironmentVariable("hcb:IsTokenValid", "false");
+            ContentResult result = reCaptcha.DoWork(token);    //Validate the token
+            Assert.AreEqual(typeof(ContentResult), result.GetType());
+            Assert.AreEqual("false", result.Content);
+
             //Now make the validation call.
-            result = contactUs.Validate(token);
-            Assert.AreEqual(false, result);
+            bool isValidToken = contactUs.Validate(token);
+            Assert.AreEqual(false, isValidToken);
         }
         [TestMethod]
         public void Post_TimedOutToken()
         {
-            Environment.SetEnvironmentVariable("_IsTokenValid", "true");    //Force token to look like a good one.
-            bool result = reCaptcha.OnPost();    //Validate the token
-            Assert.AreEqual(true, result);
+            Environment.SetEnvironmentVariable("hcb:IsTokenValid", "true");    //Force token to look like a good one.
+            ContentResult result = reCaptcha.DoWork(token);    //Validate the token
+            Assert.AreEqual(typeof(ContentResult), result.GetType());
+            Assert.AreEqual("true", result.Content);
             //Now make the validation call.
             Thread.Sleep(4000);
-            result = contactUs.Validate(token);
-            Assert.AreEqual(false, result);
+            bool isValidToken = contactUs.Validate(token);
+            Assert.AreEqual(false, isValidToken);
         }
         [TestMethod]
         public void Post_DifferentToken()
         {
-            Environment.SetEnvironmentVariable("_IsTokenValid", "true");    //Force it to look like a valid token
-            bool result = reCaptcha.OnPost();    //Validate the token
-            Assert.AreEqual(true, result);
+            Environment.SetEnvironmentVariable("hcb:IsTokenValid", "true");    //Force it to look like a valid token
+            ContentResult result = reCaptcha.DoWork(token);    //Validate the token
+            Assert.AreEqual(typeof(ContentResult), result.GetType());
+            Assert.AreEqual("true", result.Content);
             //Now make the validation call.
-            result = contactUs.Validate(token + "xyz");
-            Assert.AreEqual(false, result);
+            bool isValidToken = contactUs.Validate(token + "xyz");
+            Assert.AreEqual(false, isValidToken);
         }
         [TestMethod]
         public void Post_AllGood()
         {
-            Environment.SetEnvironmentVariable("_IsTokenValid", "true");
-            bool result = reCaptcha.OnPost();    //Validate the token
-            Assert.AreEqual(true, result);
+            Environment.SetEnvironmentVariable("hcb:IsTokenValid", "true");
+            ContentResult result = reCaptcha.DoWork(token);    //Validate the token
+            Assert.AreEqual(typeof(ContentResult), result.GetType());
+            Assert.AreEqual("true", result.Content);
             //Now make the validation call.
-            result = contactUs.Validate(token);
-            Assert.AreEqual(true, result);
+            bool isValidToken = contactUs.Validate(token);
+            Assert.AreEqual(true, isValidToken);
         }
     }
 }

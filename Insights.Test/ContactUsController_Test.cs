@@ -19,7 +19,7 @@ namespace Hcb.Insights.Test
         [TestInitialize]
         public void Initialize()
         {
-            Environment.SetEnvironmentVariable("_RunningUnderMsTest", "true");
+            Environment.SetEnvironmentVariable("hcb:RunningUnderMsTest", "true");
             Environment.SetEnvironmentVariable("hcb:reCaptchaSecret", "g3grUoNXNJIy2VqeFczEBLRKIrzVt9M6RRk14qDdLEWV+/y8QEG90afkSvHtBTwA");
         }
         [TestMethod]
@@ -37,7 +37,7 @@ namespace Hcb.Insights.Test
             controller.ControllerContext.HttpContext.Request.Body.Flush();
             controller.ControllerContext.HttpContext.Request.Body.Position = 0;
             controller.ControllerContext.HttpContext.Session = new TestSession();
-            Environment.SetEnvironmentVariable("_IsTokenValid", "false");
+            Environment.SetEnvironmentVariable("hcb:IsTokenValid", "false");
             bool result = controller.Post();    //Validate the token
             Assert.AreEqual(false, result);
             //Now make the validation call.
@@ -66,7 +66,7 @@ namespace Hcb.Insights.Test
             controller.ControllerContext.HttpContext.Request.Body.Flush();
             controller.ControllerContext.HttpContext.Request.Body.Position = 0;
             controller.ControllerContext.HttpContext.Session = new TestSession();
-            Environment.SetEnvironmentVariable("_IsTokenValid", "true");    //Force token to look like a good one.
+            Environment.SetEnvironmentVariable("hcb:IsTokenValid", "true");    //Force token to look like a good one.
             bool result = controller.Post();
             Assert.AreEqual(true, result);
             //Now make the validation call.
@@ -96,7 +96,7 @@ namespace Hcb.Insights.Test
             controller.ControllerContext.HttpContext.Request.Body.Flush();
             controller.ControllerContext.HttpContext.Request.Body.Position = 0;
             controller.ControllerContext.HttpContext.Session = new TestSession();
-            Environment.SetEnvironmentVariable("_IsTokenValid", "true");    //Force it to look like a valid token
+            Environment.SetEnvironmentVariable("hcb:IsTokenValid", "true");    //Force it to look like a valid token
             bool result = controller.Post();
             Assert.AreEqual(true, result);
             //Now make the validation call.
@@ -131,7 +131,7 @@ namespace Hcb.Insights.Test
             controller.ControllerContext.HttpContext.Request.Body.Flush();
             controller.ControllerContext.HttpContext.Request.Body.Position = 0;
             controller.ControllerContext.HttpContext.Session = new TestSession();
-            Environment.SetEnvironmentVariable("_IsTokenValid", "true");
+            Environment.SetEnvironmentVariable("hcb:IsTokenValid", "true");
             bool result = controller.Post();
             Assert.AreEqual(true, result);
             //Now make the validation call.

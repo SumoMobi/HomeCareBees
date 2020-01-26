@@ -33,29 +33,48 @@ _hcb.contactUs = {
                 //Go find out if the request passes the reCaptcha test.
                 document.getElementById("reCaptchaToken").value = token;    //Need to send this with the form post so that the server end can detect hackers bypassing the
                                                                             //reCaptcha validation part.
-                $.post(
-                    "api/contactus",
-                    token)
-                .done(function (data) {
-                    if (data == false) {
-                        return; //Request failed the reCaptcha test.  Leave the user just where they were.  No message.
+                var client = new XMLHttpRequest();
+                client.open("POST", "/ReCaptcha", true);
+//                client.setRequestHeader("__requestverificationtoken", document.querySelector('input[name="__RequestVerificationToken"]').value);
+                client.setRequestHeader("content-type", "application/x-www-form-urlencoded")
+                client.onreadystatechange = function () {
+                    if (this.readyState !== 4) {
+                        return;
                     }
-                    ////Record the Google Analytics click-through event.
-                    //try {
-                    //    ga('send', {
-                    //        hitType: 'event',
-                    //        eventCategory: 'ContactRequest',
-                    //        eventAction: 'submit',
-                    //        eventLabel: 'contactRequest',
-                    //        eventValue: 1
-                    //    });
-                    //}
-                    //catch { }
+                    if (this.status !== 200) {
+                        return;
+                    }
+                    // Typical action to be performed when the document is ready:
+                    if (this.responseText === "false") {
+                        return;
+                    }
                     submitBtn.click();  //Submit the form.
-                })
-                .fail(function (data) {
-                    return; //reCaptcha test could not be completed.  Leave user where they were.
-                });
+                };
+                client.send("Token=" + token + "&__RequestVerificationToken=" + document.querySelector('input[name="__RequestVerificationToken"]').value);
+                
+                //$.post(
+                //    "/ReCaptcha",
+                //    token)
+                //.done(function (data) {
+                //    if (data == false) {
+                //        return; //Request failed the reCaptcha test.  Leave the user just where they were.  No message.
+                //    }
+                //    ////Record the Google Analytics click-through event.
+                //    //try {
+                //    //    ga('send', {
+                //    //        hitType: 'event',
+                //    //        eventCategory: 'ContactRequest',
+                //    //        eventAction: 'submit',
+                //    //        eventLabel: 'contactRequest',
+                //    //        eventValue: 1
+                //    //    });
+                //    //}
+                //    //catch { }
+                //    submitBtn.click();  //Submit the form.
+                //})
+                //.fail(function (data) {
+                //    return; //reCaptcha test could not be completed.  Leave user where they were.
+                //});
             });
         });
 
