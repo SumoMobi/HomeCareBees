@@ -13,10 +13,11 @@ namespace Hcb.Insights
             {   //Can only send email from within WinHost.
                 return;
             }
-            MailMessage mail = new MailMessage();
-
-            //set the addresses 
-            mail.From = new MailAddress(fromEmail);
+            MailMessage mail = new MailMessage
+            {
+                //set the addresses 
+                From = new MailAddress(fromEmail)
+            };
             mail.To.Add(toEmail);
 
             //set the content 
