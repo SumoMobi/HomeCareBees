@@ -7,7 +7,7 @@ namespace Hcb.Insights
 {
     public class Email
     {
-        public static void Send(string fromEmail, string toEmail, string body )
+        public static void Send(string fromEmail, string toEmail, string subject, string body )
         {
             if (System.Diagnostics.Debugger.IsAttached)
             {   //Can only send email from within WinHost.
@@ -21,13 +21,13 @@ namespace Hcb.Insights
             mail.To.Add(toEmail);
 
             //set the content 
-            mail.Subject = "Client Inquiry";
+            mail.Subject = subject;
             mail.Body = body;
             //send the message 
             SmtpClient smtp = new SmtpClient("mail.homecarebees.com");
             //            SmtpClient smtp = new SmtpClient("m06.internetmailserver.net");
 
-            //Get the encrypted password from configuratio.
+            //Get the encrypted password from configuration.
             IConfigurationSection config = Startup.Configuration.GetSection("hcb");
             string psw = config.GetValue<string>("emailPassword");
 
@@ -43,7 +43,7 @@ namespace Hcb.Insights
             psw = psw.Substring(1);
             psw = psw.Substring(0, psw.Length - 2);
 
-            //Now you can use the pasword.
+            //Now you can use the password.
             NetworkCredential Credentials = new NetworkCredential("jean.minnaar@homecarebees.com", psw);
             smtp.Credentials = Credentials;
             smtp.Send(mail);

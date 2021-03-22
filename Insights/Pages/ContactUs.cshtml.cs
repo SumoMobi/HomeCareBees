@@ -44,6 +44,7 @@ namespace Hcb.Insights.Pages
             Email.Send(
                 Request.Form["emailAddress"],
                 "inquiries@homecarebees.com",
+                "Client inquiry",
                 sb.ToString());
 
             Response.Redirect("Confirm");

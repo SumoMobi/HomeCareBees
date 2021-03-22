@@ -25,6 +25,7 @@ namespace Hcb.Insights.Pages
             Email.Send(
                 Request.Form["email"],
                 "inquiries@homecarebees.com",
+                "Job application",
                 "[" + sb.ToString()[..^1] + "]");
 
             Response.Redirect("ApplyConfirm");
