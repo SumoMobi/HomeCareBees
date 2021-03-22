@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insights", "Insights\Insights.csproj", "{2AC9286F-1B41-419A-960B-3FA7F7B1C7EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insights.Test", "Insights.Test\Insights.Test.csproj", "{FC72CF07-8983-4213-86F9-47A63C12E537}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insights.Test", "Insights.Test\Insights.Test.csproj", "{FC72CF07-8983-4213-86F9-47A63C12E537}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

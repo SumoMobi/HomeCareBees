@@ -12,7 +12,7 @@ namespace Hcb.Insights
             TripleDESCryptoServiceProvider DES = new TripleDESCryptoServiceProvider
             {
                 Mode = CipherMode.ECB,
-                Key = Encoding.ASCII.GetBytes(GetKey())
+                Key = Encoding.ASCII.GetBytes(GetKey()) //GetKey is in a partial class that is not source controlled.
             };
 
             DES.Padding = PaddingMode.PKCS7;

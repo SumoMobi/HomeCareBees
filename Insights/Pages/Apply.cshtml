@@ -1,0 +1,282 @@
+﻿@page
+@model Hcb.Insights.Pages.ApplyModel
+@{
+}
+@section Styles {
+    <style>
+/*        .form-group input[type="checkbox"].form-check-input {
+            padding-left: 15px;
+        }*/
+        .required:after {
+            color: #e32;
+            content: ' *';
+            display: inline;
+            font-weight: bold;
+        }
+    </style>
+}
+
+<div class="text-left">
+    <h1 class="display-4" style="text-align:center">Home Care Bees - Job Application</h1>
+    <br />
+    <h2>Profile and Job Application Information</h2>
+    <p>We usually respond to job applications within 24 hours. &nbsp;Please submit the information requested below.</p>
+    <p style="margin-left:25px;font-style:italic">For our privacy policy, please navigate to <a href="//www.homecarebees.com/privacy" target="_blank">Privacy Policy of Home Care Bees</a>.</p>
+    <form method="post">
+        <div class="form-group">
+            <label for="position" class="required">Applying for Position:</label>
+            <select class="form-control" id="position" name="position" required>
+                <option value="">Please select...</option>
+                <option value="Caregiver">Caregiver</option>
+            </select>
+        </div>
+
+        <h3>Name</h3>
+        <div class="form-group">
+            <label for="firstName" class="required">First Name:</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First name" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName" class="required">Last Name:</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last name" required>
+        </div>
+        <h3>Address</h3>
+        <div class="form-group">
+            <label for="addressLine1" class="required">Address Line 1:</label>
+            <input type="text" class="form-control" id="addressLine1" name="addressLine1" placeholder="Address line 1" required>
+        </div>
+        <div class="form-group">
+            <label for="addressLine2">Address Line 2:</label>
+            <input type="text" class="form-control" id="addressLine2" name="addressLine2" placeholder="Address line 2">
+        </div>
+        <div class="form-group">
+            <label for="city" class="required">City</label>
+            <input type="text" class="form-control" id="city" name="city" placeholder="City" required>
+        </div>
+        <div class="form-group">
+            <label for="state" class="required">State (abbreviated)</label>
+            <input type="text" class="form-control" id="state" name="state" placeholder="State" required>
+        </div>
+        <div class="form-group">
+            <label for="zip" class="required">Zip Code</label>
+            <input type="text" class="form-control" id="zip" name="zip" placeholder="Zip code" required>
+        </div>
+
+        <h3>Contact Info</h3>
+        <div class="form-group">
+            <label for="phone" class="required">Phone number:</label>
+            <input type="text" class="form-control" id="phone" name="" placeholder="Phone number" required>
+        </div>
+        <div class="form-group">
+            <label for="email" class="required">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email address" required>
+        </div>
+
+        <h3>Home Care Bees History</h3>
+        <div class="form-group">
+            <label for="appliedBefore" class="form-check-label">Have you applied here before?</label>
+            <input type="checkbox" class="form-check-input-reverse" id="appliedBefore" name="appliedBefore">
+        </div>
+        <div class="form-group">
+            <label for="workedBefore" class="form-check-label">Have you worked here before?</label>
+            <input type="checkbox" class="form-check-input-reverse" id="workedBefore" name="workedBefore">
+        </div>
+
+        <h3>Work Eligibility</h3>
+        <div class="form-group">
+            <label for="over18" class="form-check-label">Are you at least 18 years old?</label>
+            <input type="checkbox" class="form-check-input-reverse" id="over18" name="">
+        </div>
+        <div class="form-group">
+            <label for="usaEligible" class="form-check-label">Are you eligible to work in the USA without sponsorship?</label>
+            <input type="checkbox" class="form-check-input-reverse" id="usaEligible" name="usaEligible">
+        </div>
+
+        <h3>Fingerprint Clearance</h3>
+        <div class="form-group">
+            <label for="hasFingerPrintCard" class="form-check-label">Do you have a fingerprint clearance card?</label>
+            <input type="checkbox" class="form-check-input-reverse" id="hasFingerPrintCard" name="hasFingerPrintCard">
+        </div>
+
+        <h3>Health</h3>
+        <div class="form-group">
+            <label for="tbTest12Months" class="form-check-label">Have you been tested for Tuberculosis in the past 12 months?</label>
+            <input type="checkbox" class="form-check-input-reverse" id="tbTest12Months" name="tbTest12Months">
+        </div>
+        <div class="form-group">
+            <label for="tbTestResults" class="form-check-label">If yes to the above, were the results negative?</label>
+            <input type="checkbox" class="form-check-input-reverse" id="tbTestResults" name="tbTestResults">
+        </div>
+        <div class="form-group">
+            <label for="covidVaccinated" class="form-check-label required">Are you COVID vaccinated?</label>
+            <select class="form-control required">
+                <option value="Not Vaccinated">Not vaccinated</option>
+                <option value="Phizer1">Pfizer First Shot</option>
+                <option value="Phizer2">Pfizer Second Shot</option>
+                <option value="Moderna1">Moderna First Shot</option>
+                <option value="Moderna2">Moderna Second Shot</option>
+                <option value="JohnsonAndJohnson">Johnson and Johnson</option>
+            </select>
+        </div>
+
+        <h3>Transportation</h3>
+        <div class="form-group">
+            <label for="hasVehicle" class="form-check-label">Do you have reliable transportation such as a car, truck or van?</label>
+            <input type="checkbox" class="form-check-input-reverse" id="hasVehicle" name="hasVehicle">
+        </div>
+
+        <h3>Criminal Record</h3>
+        <div class="form-group">
+            <label for="convicted" class="form-check-label">Convicted of a felony in the last 5 years?</label>
+            <input type="checkbox" class="form-check-input-reverse" id="convicted" name="convicted">
+        </div>
+        <div class="form-group">
+            <label for="convictedDetails">If yes to above, please provide nature of the crime(s):</label>
+            <textarea class="form-control" id="convictedDetails" name="convictedDetails"></textarea>
+        </div>
+
+        <h3>Availability</h3>
+        <p class="required">For which shifts are you available?</p>
+        <div id="shiftAvailability" class="border" style="padding-top:15px">
+            @foreach (string dayOfWeek in Enum.GetNames(typeof(DayOfWeek)))
+            {
+            <div class="form-row">
+                <div class="col" style="padding-left:25px">
+                    @dayOfWeek shifts
+                </div>
+                @foreach (string shift in new string[] { "1st (8AM-4PM)", "2nd (4PM-12AM)", "3rd (12AM-8AM)" })
+                    {
+                <div class="col form-group">
+                    <input type="checkbox" id='@(dayOfWeek.ToLower() + shift[..3])' name='@(dayOfWeek.ToLower() + shift[..3])' class="form-check-input" />
+                    <label for='@(dayOfWeek.ToLower() + shift[..3])' class="form-check-label">@shift</label>
+                </div>
+                    }
+            </div>
+            }
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="overtime" class="form-check-label">Available to work overtime?</label>
+            <input type="checkbox" class="form-check-input-reverse" id="overtime" name="overtime">
+        </div>
+        <div class="form-group">
+            <label for="startDays" class="required">Number of days' notice you need to give your current employer?</label>
+            <input type="number" class="form-control" id="startDays" name="startDays" value="0">
+        </div>
+        <div class="form-group">
+            <label for="endDate">If only temporarily available, last date of your availability:</label>
+            <input type="date" class="form-control" id="" name="" placeholder="mm/dd/yyyy">
+        </div>
+
+        <h3>Employment History</h3>
+        <div class="form-group">
+            <label for="yearsExperience" class="required">Number of years being a caregiver:</label>
+            <input type="number" class="form-control" id="yearsExperience" name="yearsExperience" required>
+        </div>
+        <div class="form-group">
+            <label for="mostRecentEmployerMonths">If employed/was employed, number of months with most recent employer:</label>
+            <input type="number" class="form-control" id="mostRecentEmployerMonths" name="mostRecentEmployerMonths">
+        </div>
+        <div class="form-group">
+            <label for="mostRecentEmployerOccupation">If employed/was employed, occupation at most recent employer:</label>
+            <input type="text" class="form-control" id="mostRecentEmployerOccupation" name="mostRecentEmployerOccupation">
+        </div>
+        <div class="form-group">
+            <label for="2ndMostRecentEmployerMonths">If employed before too, number of months with the previous employer:</label>
+            <input type="number" class="form-control" id="2ndMostRecentEmployerMonths" name="2ndMostRecentEmployerMonths">
+        </div>
+        <div class="form-group">
+            <label for="2ndMostRecentEmployerOccupation">If employed before too, occupation with the previous employer:</label>
+            <input type="text" class="form-control" id="2ndMostRecentEmployerOccupation" name="2ndMostRecentEmployerOccupation">
+        </div>
+        <div class="form-group">
+            <label for="militaryExperience">Military experience, such as years in service, rank and branch:</label>
+            <input type="text" class="form-control" id="militaryExperience" name="militaryExperience">
+        </div>
+
+        <h3>Skills and Education</h3>
+        <div class="form-group">
+            <label for="levelOfEducation" class="required">Highest Level of Education:</label>
+            <select class="form-control" required>
+                <option value="">Select...</option>
+                <option value="highSchool">Completed high school</option>
+                <option value="batchelors">Completed bachelors degree</option>
+                <option value="masters">Completed masters degree</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cprCertified" class="form-check-label">Currently CPR Certified?</label>
+            <input type="checkbox" class="form-check-input-reverse" id="cprCertified" name="cprCertified">
+        </div>
+        <div class="form-group">
+            <label for="firstAidCertified" class="form-check-label">Currently First Aid Certified?</label>
+            <input type="checkbox" class="form-check-input-reverse" id="firstAidCertified" name="firstAidCertified">
+        </div>
+        <div class="form-group">
+            <label for="english" class="form-check-label required">English Proficiency:</label>
+            <select class="form-control" required>
+                <option value="">Select...</option>
+                <option value="englishNone">None</option>
+                <option value="englishSome">Some</option>
+                <option value="englishFull">Full</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="spanish" class="form-check-label required">Spanish Proficiency:</label>
+            <select class="form-control" required>
+                <option value="">Select...</option>
+                <option value="spanishNone">None</option>
+                <option value="spanishSome">Some</option>
+                <option value="spanishFull">Full</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="otherLanguages">Other languages:</label>
+            <input type="text" class="form-control" id="otherLanguages" name="otherLanguages">
+        </div>
+
+        <h3>Signature</h3>
+        <div style="background-color:blanchedalmond">
+            I attest that the information provided in the application is true and complete.&nbsp;&nbsp;
+            I acknowledge that false information is grounds for not hiring me or immediate termination.&nbsp;&nbsp;
+            I authorize the verification of any information listed above.&nbsp;&nbsp;
+            By selecting "I Accept", you are signing this Application electronically.&nbsp;&nbsp;
+            You agree your electronic signature is the legal equivalent of your manual signature on this Application.&nbsp;&nbsp;
+            By selecting "I Accept" agree that your use of a key pad,
+            mouse or other device to select an item, button, icon or similar act/action, or to otherwise
+            provide Home Care Bees, LLC. or in accessing or making any transaction regarding any agreement,
+            acknowledgment, consent terms, disclosures or conditions constitutes your signature
+            (hereafter referred to as "E-Signature"), acceptance and agreement as if actually signed by
+            you in writing.&nbsp;&nbsp;
+            You also agree that no certification authority or other third party verification
+            is necessary to validate your E-Signature and that the lack of such certification or third party
+            verification will not in any way affect the enforceability of your E-Signature or any resulting
+            contract between you and Home Care Bees, LLC.&nbsp;&nbsp;
+            You also represent that you are authorized to enter
+            this Application for stated person. You further agree that each
+            use of your E-Signature in obtaining a Home Care Bees, LLC. onLine service, constitutes your agreement
+            to be bound by the terms and conditions of Home Care Bees, LLC.
+            <br /><br />
+            <div class="form-group" style="padding-left:25px">
+                <label for="iAccept" class="required">I Accept:</label>
+                <input type="checkbox" class="form-check-input-reverse" id="iAccept" name="iAccept" required>
+            </div>
+            <div class="form-group" style="padding-left:25px;padding-right:25px">
+                <label for="signature" class="required">Signature:</label>
+                <input type="text" class="form-control required" id="signature" name="signature" required placeholder="Sign by typing in your first and last name">
+            </div>
+            <div class="form-group" style="padding-left:25px;padding-bottom:25px;padding-right:25px">
+                <label for="signatureDateTime">Date and Time:</label>
+                <input type="text" class="form-control" id="signatureDateTime" name="signatureDateTime" value='@DateTime.Now.ToString("g")' readonly>
+            </div>
+        </div>
+        <input type="hidden" id="reCaptchaToken" name="reCaptchaToken">
+        <button type="submit" id="submitButton" style="display:none"></button>
+        <input type="submit" id="submitButton" style="display:none">
+    </form>
+    <button type="button" class="btn btn-primary" onclick="_hcb.apply.submitClicked(event);">Submit</button>
+    @section Scripts {
+        <script src="~/js/apply.js" asp-append-version="true"></script>
+        <script src="https://www.google.com/recaptcha/api.js?render=6LfHsM0UAAAAAMoFKW3RL7qfBgX8pBW5Z5EY2c2Q"></script>
+    }
+</div>
