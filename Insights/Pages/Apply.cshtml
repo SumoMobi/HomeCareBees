@@ -105,8 +105,8 @@
             <input type="checkbox" class="form-check-input-reverse" id="tbTestResults" name="tbTestResults">
         </div>
         <div class="form-group">
-            <label for="covidVaccinated" class="form-check-label required">Are you COVID vaccinated?</label>
-            <select class="form-control required">
+            <label for="covidVaccinated" class="required">Are you COVID vaccinated?</label>
+            <select class="form-control" required id="covidVaccinated" name="covidVaccinated">
                 <option value="Not Vaccinated">Not vaccinated</option>
                 <option value="Phizer1">Pfizer First Shot</option>
                 <option value="Phizer2">Pfizer Second Shot</option>
@@ -161,8 +161,8 @@
             <input type="number" class="form-control" id="startDays" name="startDays" value="0">
         </div>
         <div class="form-group">
-            <label for="cities">Cities you can service:</label>
-            <input type="text" class="form-control" id="cities" name="cities" placeholder="List cities you are willing to work in">
+            <label for="serviceCities" class="required">Cities you can service:</label>
+            <input type="text" class="form-control" required id="serviceCities" name="serviceCities" placeholder="List one of more cities you are willing to work in">
         </div>
         <div class="form-group">
             <label for="endDate">If only temporarily available, last date of your availability:</label>
@@ -214,7 +214,7 @@
             <input type="checkbox" class="form-check-input-reverse" id="firstAidCertified" name="firstAidCertified">
         </div>
         <div class="form-group">
-            <label for="english" class="form-check-label required">English Proficiency:</label>
+            <label for="english" class="required">English Proficiency:</label>
             <select class="form-control" required id="english" name="english">
                 <option value="">Select...</option>
                 <option value="englishNone">None</option>
@@ -223,7 +223,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="spanish" class="form-check-label required">Spanish Proficiency:</label>
+            <label for="spanish" class="required">Spanish Proficiency:</label>
             <select class="form-control" required id="spanish" name="spanish">
                 <option value="">Select...</option>
                 <option value="spanishNone">None</option>
