@@ -2,4 +2,5 @@
 Disallow: /Error/*
 Disallow: /Privacy/*
 Disallow: /Confirm/*
+Disallow: /PnP/*
 Sitemap: https://www.homecarebees.com/sitemap.xml

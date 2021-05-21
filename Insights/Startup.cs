@@ -24,25 +24,24 @@ namespace Hcb.Insights
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+                options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
             services.AddResponseCompression();
-
             services.AddSession( options => 
             { 
-                options.IdleTimeout = TimeSpan.FromMinutes(5);
+                options.IdleTimeout = TimeSpan.FromMinutes(15);
                 options.Cookie.HttpOnly = true;
                 // Make the session cookie essential
                 options.Cookie.IsEssential = true;
             });
             services.AddMemoryCache();
-//            services.AddDistributedMemoryCache();
+            services.AddHttpContextAccessor();
+            services.AddMvc();
 
             services.AddHttpsRedirection(options =>
             {
@@ -58,6 +57,7 @@ namespace Hcb.Insights
                 //                options.MaxAge = new TimeSpan(0, 3, 0);
             });
 
+            services.AddRazorPages();
             services.Configure<IISServerOptions>(options =>
             {   //Need this so that we can call synchronous methods such as Stream.ReadLine().
                 options.AllowSynchronousIO = true;
