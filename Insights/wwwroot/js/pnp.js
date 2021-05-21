@@ -1,7 +1,12 @@
-/*var _hcb = _hcb || {};
+var _hcb = _hcb || {};
 _hcb.pnp = {
-    maxPages: number = 3,
-    currentPage: function (): number {
+    maxPages: number = 344,
+    setPage: function (pageNumber) {
+        let img = document.getElementById("pnpPage");
+        img.src = "/PnP?handler=Page&pageNumber=" + pageNumber;
+        window.scrollTo(0, 0);
+    },
+    getCurrentPage: function () {
         let img = document.getElementById("pnpPage");
         let path = img.attributes["src"].value;
         let pageNumberOffset = "/Pnp?handler=Page&pageNumber=".length;
@@ -9,31 +14,26 @@ _hcb.pnp = {
         return pageNumber * 1;
     },
     next: function () {
-        let pageNumber = currentPage();
-        pageNumber = (pageNumber * 1) + 1;
-        if (fileNumber > maxPages) {
+        let pageNumber = getCurrentPage();
+        pageNumber++;
+        if (pageNumber > maxPages) {
             return;
         }
-        img.src = "/PnP?handler=Page&pageNumber=" + fileNumber;
-        window.scrollTo(0, 0);
+        _hcb.pnp.setPage(pageNumber);
     },
     previous: function () {
-        let img = document.getElementById("pnpPage");
-        let path = img.attributes["src"].value;
-        let fileNumberOffset = "/Pnp?handler=Page&pageNumber=".length;
-        let fileNumber = path.substr(fileNumberOffset);
-        fileNumber = (fileNumber * 1) - 1;
-        if (fileNumber < 1) {
+        let pageNumber = _hcb.pnp.getCurrentPage();
+        pageNumber--;
+        if (pageNumber < 1) {
             return;
         }
-        img.src = "/PnP?handler=Page&pageNumber=" + fileNumber;
-        window.scrollTo(0, 0);
+        _hcb.pnp.setPage(pageNumber);
     },
     section: function (sectionNbr) {
         let img = document.getElementById("pnpPage");
         let fileNumber;
         switch (sectionNbr) {
-            case 0:
+            case 0: //TOC
                 fileNumber = 2;
                 break;
             case 1:
@@ -78,5 +78,4 @@ _hcb.pnp = {
         hdr.style.display = "";
         ftr.style.display = "";
     }
-};*/ 
-//# sourceMappingURL=pnp.js.map
+};
