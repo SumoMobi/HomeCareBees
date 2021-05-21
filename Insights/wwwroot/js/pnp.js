@@ -1,7 +1,7 @@
-﻿var _hcb = _hcb || {};
+/*var _hcb = _hcb || {};
 _hcb.pnp = {
-    maxPages: number = 344,
-    getCurrentPage: function () {
+    maxPages: number = 3,
+    currentPage: function (): number {
         let img = document.getElementById("pnpPage");
         let path = img.attributes["src"].value;
         let pageNumberOffset = "/Pnp?handler=Page&pageNumber=".length;
@@ -9,53 +9,60 @@ _hcb.pnp = {
         return pageNumber * 1;
     },
     next: function () {
-        let pageNumber = _hcb.pnp.getCurrentPage();
-        pageNumber++;
-        if (pageNumber > _hcb.pnp.maxPages) {
+        let pageNumber = currentPage();
+        pageNumber = (pageNumber * 1) + 1;
+        if (fileNumber > maxPages) {
             return;
         }
-        _hcb.pnp.setPage(pageNumber);
+        img.src = "/PnP?handler=Page&pageNumber=" + fileNumber;
+        window.scrollTo(0, 0);
     },
     previous: function () {
-        let pageNumber = _hcb.pnp.getCurrentPage();
-        pageNumber--;
-        if (pageNumber < 1) {
+        let img = document.getElementById("pnpPage");
+        let path = img.attributes["src"].value;
+        let fileNumberOffset = "/Pnp?handler=Page&pageNumber=".length;
+        let fileNumber = path.substr(fileNumberOffset);
+        fileNumber = (fileNumber * 1) - 1;
+        if (fileNumber < 1) {
             return;
         }
-        _hcb.pnp.setPage(pageNumber);
+        img.src = "/PnP?handler=Page&pageNumber=" + fileNumber;
+        window.scrollTo(0, 0);
     },
     section: function (sectionNbr) {
-        let pageNumber;
+        let img = document.getElementById("pnpPage");
+        let fileNumber;
         switch (sectionNbr) {
-            case "Table of Contents":
-                pageNumber = 2;
+            case 0:
+                fileNumber = 2;
                 break;
-            case "1: Introduction":
-                pageNumber = 8;
+            case 1:
+                fileNumber = 60;
                 break;
-            case "2: Organization and Administration":
-                pageNumber = 9;
+            case 2:
+                fileNumber = 90;
                 break;
-            case "3: Scope of Services":
-                pageNumber = 25;
+            case 3:
+                fileNumber = 120;
                 break;
-            case "4: Service Delivery and Client Care":
-                pageNumber = 44;
+            case 4:
+                fileNumber = 150;
                 break;
-            case "5: Human Resources":
-                pageNumber = 126;
+            case 5:
+                fileNumber = 180;
                 break;
-            case "6: Health and Safety":
-                pageNumber = 203;
+            case 6:
+                fileNumber = 210;
                 break;
-            case "7: Financial Management":
-                pageNumber = 328;
+            case 7:
+                fileNumber = 240;
                 break;
-            case "8: Quality and Risk Management":
-                pageNumber = 337;
+            case 8:
+                fileNumber = 270;
                 break;
         }
-        _hcb.pnp.setPage(pageNumber);
+        img.src = "pnp?handler=Page&pageNumber=" + fileNumber;
+        window.scrollTo(0, 0);
     },
     toggleHeaderFooter: function () {
         let hdr = document.getElementsByTagName("header")[0];
@@ -70,10 +77,6 @@ _hcb.pnp = {
         toggle.innerText = "Hide header and footer";
         hdr.style.display = "";
         ftr.style.display = "";
-    },
-    setPage: function (pageNumber) {
-        let img = document.getElementById("pnpPage");
-        img.src = "/PnP?handler=Page&pageNumber=" + pageNumber;
-        window.scrollTo(0, 0);
     }
-};
+};*/ 
+//# sourceMappingURL=pnp.js.map
