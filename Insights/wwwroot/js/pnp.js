@@ -103,4 +103,3 @@ _hcb.pnp = {
     //    }
     }
 };
-document.addEventListener("keydown", _hcb.pnp.keydown(event));
