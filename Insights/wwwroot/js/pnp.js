@@ -4,6 +4,16 @@ _hcb.pnp = {
     setPage: function (pageNumber) {
         let img = document.getElementById("pnpPage");
         img.src = "/PnP?handler=Page&pageNumber=" + pageNumber;
+        let nxt = document.getElementById("Next");
+        nxt.disabled = false;
+        let prv = document.getElementById("Previous");
+        prv.disabled = false;
+        if (pageNumber === 1) {
+            prv.disabled = true;
+        }
+        if (pageNumber >= _hcb.pnp.maxPages) {
+            nxt.disabled = true;
+        }
         window.scrollTo(0, 0);
     },
     getCurrentPage: function () {
@@ -14,9 +24,9 @@ _hcb.pnp = {
         return pageNumber * 1;
     },
     next: function () {
-        let pageNumber = getCurrentPage();
+        let pageNumber = _hcb.pnp.getCurrentPage();
         pageNumber++;
-        if (pageNumber > maxPages) {
+        if (pageNumber > _hcb.pnp.maxPages) {
             return;
         }
         _hcb.pnp.setPage(pageNumber);
@@ -30,45 +40,43 @@ _hcb.pnp = {
         _hcb.pnp.setPage(pageNumber);
     },
     section: function (sectionNbr) {
-        let img = document.getElementById("pnpPage");
-        let fileNumber;
+        let pageNumber;
         switch (sectionNbr) {
             case 0: //TOC
-                fileNumber = 2;
+                pageNumber = 2;
                 break;
             case 1:
-                fileNumber = 60;
+                pageNumber = 8;
                 break;
             case 2:
-                fileNumber = 90;
+                pageNumber = 9;
                 break;
             case 3:
-                fileNumber = 120;
+                pageNumber = 25;
                 break;
             case 4:
-                fileNumber = 150;
+                pageNumber = 44;
                 break;
             case 5:
-                fileNumber = 180;
+                pageNumber = 126;
                 break;
             case 6:
-                fileNumber = 210;
+                pageNumber = 203;
                 break;
             case 7:
-                fileNumber = 240;
+                pageNumber = 328;
                 break;
             case 8:
-                fileNumber = 270;
+                pageNumber = 337;
                 break;
         }
-        img.src = "pnp?handler=Page&pageNumber=" + fileNumber;
-        window.scrollTo(0, 0);
+        _hcb.pnp.setPage(pageNumber);
     },
     toggleHeaderFooter: function () {
         let hdr = document.getElementsByTagName("header")[0];
         let toggle = document.getElementById("Toggle");
         let ftr = document.getElementsByTagName("footer")[0];
-        if (hdr.style.display == "") {
+        if (hdr.style.display === "") {
             toggle.innerText = "Show header and footer";
             hdr.style.display = "none";
             ftr.style.display = "none";
@@ -77,5 +85,22 @@ _hcb.pnp = {
         toggle.innerText = "Hide header and footer";
         hdr.style.display = "";
         ftr.style.display = "";
+    },
+    keydown: function (evt) {
+        let page = -1;
+    //    if (evt.ctrlKey == false) {
+    //        return;
+    //    }
+    //    if (evt.keyCode === 34) {
+    //        page = _hcb.pnp.getCurrentPage() + 1;
+    //        _hcb.pnp.setPage(page);
+    //        return;
+    //    }
+    //    if (evt.keyCode === 33) {
+    //        page = _hcb.pnp.getCurrentPage() - 1;
+    //        _hcb.pnp.setPage(page);
+    //        return;
+    //    }
     }
 };
+document.addEventListener("keydown", _hcb.pnp.keydown(event));

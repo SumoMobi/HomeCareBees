@@ -4,29 +4,27 @@
     ViewData["Title"] = "Home Care Bees - Policies and Procedures";
     ViewData["MetaDescription"] = "Policies and procedures";
 }
-<div class="container-fluid">
-    @*<div style="background-image: url(/images/PnP/PoliciesAndProcedures1024_1.jpg);background-repeat:no-repeat;height:792px;width:1024px">
-        </div>*@
-    <img id="pnpPage" src="/PnP?handler=Page&pageNumber=1" style="width:100%;padding:1px;border:1px solid DeepSkyBlue;z-index:0" />
-    @*<img src="/images/PnP/opacity.jpg" style="width:100%;position:relative;z-index:1;left:-700px" />*@
+<div class="container-fluid" style="position:relative;">
+    <img id="pnpPage" src="/PnP?handler=Page&pageNumber=1" style="width:100%;padding:1px;border:1px solid DeepSkyBlue" />
+    <img src="/images/PnP/policiesandprocedures.png" style="width:100%;position:absolute;left:0;top:0" />
     <br />
     <br />
-    <button type="button" class="btn btn-primary" onclick="_hcb.pnp.previous()" id="Previous" href="#" title="Previous">Previous Page</button>
+    <button type="button" class="btn btn-primary" onclick="_hcb.pnp.previous()" id="Previous" href="#" title="Previous" disabled>Previous Page</button>
     <button type="button" class="btn btn-primary" onclick="_hcb.pnp.next()" id="Next" href="#" title="Next">Next Page</button>
     <div class="btn-group">
         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Jump to Section
         </button>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section('Table of Contents');">Table of Contents</a>
-            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section('1: Introduction');">1: Introduction</a>
-            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section('2: Organization and Administration');">2: Organization and Administration</a>
-            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section('3: Scope of Services');">3: Scope of Services</a>
-            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section('4: Service Delivery and Client Care');">4: Service Delivery and Client Care</a>
-            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section('5: Human Resources');">5: Human Resources</a>
-            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section('6: Health and Safety');">6: Health and Safety</a>
-            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section('7: Financial Management');">7: Financial Management</a>
-            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section('8: Quality and Risk Management');">8: Quality and Risk Management</a>
+            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section(0);">Table of Contents</a>
+            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section(1);">1: Introduction</a>
+            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section(2);">2: Organization and Administration</a>
+            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section(3);">3: Scope of Services</a>
+            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section(4);">4: Service Delivery and Client Care</a>
+            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section(5);">5: Human Resources</a>
+            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section(6);">6: Health and Safety</a>
+            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section(7);">7: Financial Management</a>
+            <a class="dropdown-item" href="#" onclick="_hcb.pnp.section(8);">8: Quality and Risk Management</a>
         </div>
     </div>
     <button type="button" class="btn btn-primary" onclick="_hcb.pnp.toggleHeaderFooter()" id="Toggle" href="#" title="Toggle">Hide Header and Footer</button>
