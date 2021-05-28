@@ -60,8 +60,7 @@ namespace Hcb.Insights.Pages
             httpClient.BaseAddress = new Uri(url);
             HttpResponseMessage httpResponseMessage = httpClient.GetAsync("").Result;
             System.IO.Stream stream = httpResponseMessage.Content.ReadAsStreamAsync().Result;
-            FileStreamResult fsr = new FileStreamResult(stream, "image/jpg");
-            return fsr;
+            return File(stream, "image/jpeg");
         }
         private bool AllowPageRequest()
         {
@@ -79,7 +78,7 @@ namespace Hcb.Insights.Pages
                 return false;
             }
             string strVal = Encoding.UTF8.GetString(value);
-            if (Request.Headers["Referer"] != "https://www.homecarebees.com/pnp")
+            if (Request.Headers["Referer"].ToString().ToLower() != "https://www.homecarebees.com/pnp")
             {
                 if (Debugger.IsAttached)
                 {

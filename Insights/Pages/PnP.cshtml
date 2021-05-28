@@ -5,12 +5,12 @@
     ViewData["MetaDescription"] = "Policies and procedures";
 }
 <div class="container-fluid" style="position:relative;">
-    <img id="pnpPage" src="/PnP?handler=Page&pageNumber=1" style="width:100%;padding:1px;border:1px solid DeepSkyBlue" />
-    <img src="/images/PnP/policiesandprocedures.png" style="width:100%;position:absolute;left:0;top:0" />
+    <img id="pnpPage" src="/PnP?handler=Page&pageNumber=1" style="width:100%;padding:1px;border:1px solid DeepSkyBlue;" />
+    <img src="/images/PnP/donotcopy.png" style="width:100%;position:absolute;left:0;top:0;" />
     <br />
     <br />
-    <button type="button" class="btn btn-primary" onclick="_hcb.pnp.previous()" id="Previous" href="#" title="Previous" disabled>Previous Page</button>
-    <button type="button" class="btn btn-primary" onclick="_hcb.pnp.next()" id="Next" href="#" title="Next">Next Page</button>
+    <button type="button" class="btn btn-primary mybtn" onclick="_hcb.pnp.previous()" id="Previous" href="#" title="Previous" disabled>Previous Page</button>
+    <button type="button" class="btn btn-primary mybtn" onclick="_hcb.pnp.next()" id="Next" href="#" title="Next">Next Page</button>
     <div class="btn-group">
         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Jump to Section
@@ -31,11 +31,24 @@
     @section Scripts {
         <script src="~/js/pnp.js" asp-append-version="true"></script>
     }
-    @*@section Styles {
-            <style>
-                .div-inline {
-                    display: inline-block;
-                }
-            </style>
-        }*@
+    @section Styles {
+        <style>
+            /*The below all to get the buttons to be clickable anywhere on its surface*/
+            html {
+                box-sizing: border-box;
+            }
+            *, *:before, *:after {
+                box-sizing: content-box;
+            }
+            .mybtn, .mybtn * {
+                box-sizing: content-box;
+            }
+            .mybtn::before, .mybtn::after {
+                box-sizing: content-box;
+            }
+            .mybtn *::before, .mybtn *::after {
+                box-sizing: content-box;
+            }
+        </style>
+    }
 </div>

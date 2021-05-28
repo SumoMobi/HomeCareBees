@@ -85,9 +85,9 @@ _hcb.pnp = {
         toggle.innerText = "Hide header and footer";
         hdr.style.display = "";
         ftr.style.display = "";
-    },
-    keydown: function (evt) {
-        let page = -1;
+    }
+    //keydown: function (evt) {
+    //    let page = -1;
     //    if (evt.ctrlKey == false) {
     //        return;
     //    }
@@ -101,5 +101,6 @@ _hcb.pnp = {
     //        _hcb.pnp.setPage(page);
     //        return;
     //    }
-    }
+    //}
 };
+
