@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <AspNetCoreHostingModel>OutofProcess</AspNetCoreHostingModel>
     <UserSecretsId>8673509a-b313-4695-b144-a015591adfa5</UserSecretsId>
   </PropertyGroup>
 
